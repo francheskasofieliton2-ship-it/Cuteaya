@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlocked 💜</title>
+
+<style>
+/* -------------------------------- */
+/*             BASE PAGE            */
+/* -------------------------------- */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #e6d8ff, #ffffff, #f2eaff);
+    font-family: "Poppins", sans-serif;
+    position: relative;
+}
+
+/* Enable scrolling after message appears */
+body.allow-scroll {
+    overflow-y: auto;
+}
+
+/* -------------------------------- */
+/*         SPARKLING BORDER         */
+/* -------------------------------- */
+.sparkle-border {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 5px solid transparent;
+    border-radius: 20px;
+    animation: sparkle 3s infinite linear;
+}
+
+@keyframes sparkle {
+    0% { box-shadow: 0 0 10px #d5b3ff; }
+    50% { box-shadow: 0 0 25px #b389ff; }
+    100% { box-shadow: 0 0 10px #d5b3ff; }
+}
+
+/* -------------------------------- */
+/*          LOCK ANIMATION          */
+/* -------------------------------- */
+#lock-container {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    animation: fadeOut 2s forwards;
+    animation-delay: 2.3s;
+}
+
+#lock {
+    width: 150px;
+    animation: unlock 2s ease forwards;
+    transform-origin: center;
+}
+
+@keyframes unlock {
+    0% { transform: rotate(0deg) scale(1); }
+    30% { transform: rotate(-15deg) scale(1.1); }
+    60% { transform: rotate(20deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(0); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; }
+}
+
+/* -------------------------------- */
+/*         FLOATING HEARTS          */
+/* -------------------------------- */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: #ff7bdc;
+    font-size: 20px;
+    animation: floatUp 5s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
+}
+
+/* -------------------------------- */
+/*            MAIN CONTENT          */
+/* -------------------------------- */
+#content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+    text-align: center;
+    z-index: 10;
+}
+
+#content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glowing Title */
+h1 {
+    font-size: 34px;
+    color: #8a5cff;
+    text-shadow: 0 0 10px #c8a8ff, 0 0 20px #e3d3ff;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #c8a8ff; }
+    100% { text-shadow: 0 0 20px #b38aff; }
+}
+
+/* Typewriter */
+#typewriter {
+    color: #6d42c4;
+    font-size: 18px;
+    width: 80%;
+    margin: 0 auto 10px;
+    min-height: 60px;
+    white-space: pre-wrap;
+    line-height: 1.5em;
+}
+
+/* -------------------------------- */
+/*           VIDEO SECTION          */
+/* -------------------------------- */
+#special-video {
+    width: 80%;
+    max-width: 350px;
+    margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #c7a8ff, 0 0 40px #b38aff;
+    animation: pulseVideo 3s infinite ease-in-out;
+}
+
+/* Glowing pulse animation */
+@keyframes pulseVideo {
+    0% { box-shadow: 0 0 15px #c7a8ff; }
+    50% { box-shadow: 0 0 35px #b38aff; }
+    100% { box-shadow: 0 0 15px #c7a8ff; }
+}
+
+/* -------------------------------- */
+/*       PICTURE (pulse glow)       */
+/* -------------------------------- */
+#special-pic {
+    width: 160px;
+    height: auto;
+    border-radius: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    border: 3px solid #c9b2ff;
+    animation: pulse 2.2s infinite ease-in-out;
+    box-shadow: 0 0 15px #d8c5ff;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 12px #c7a8ff;
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px #b087ff;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px #c7a8ff;
+    }
+}
+
+/* -------------------------------- */
+/*        LOVE MESSAGE (hidden)     */
+/* -------------------------------- */
+#love-message {
+    opacity: 0;
+    margin-top: 25px;
+    font-size: 17px;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6em;
+    color: #6a42b5;
+    transform: translateY(20px);
+    transition: 1s;
+    display: none;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #d6c4ff;
+    box-shadow: 0 0 20px #e5d8ff;
+    background: rgba(255,255,255,0.65);
+}
+
+/* Show message */
+#love-message.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade-in paragraphs */
+#love-message p {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInPara 1s forwards;
+    position: relative;
+    padding-left: 25px;
+}
+
+#love-message p::before {
+    content: "💜";
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: beat 1.4s infinite ease-in-out;
+}
+
+@keyframes fadeInPara {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes beat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+button {
+    background: #a48bff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+button:hover {
+    background: #8d76e8;
+}
+</style>
+</head>
+
+<body>
+  
+
+<div class="sparkle-border"></div>
+
+<!-- Lock Animation -->
+<div id="lock-container">
+    <img id="fi.gif" src="">
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <h1>💜 Welcome, My Love 💜</h1>
+
+    <div id="typewriter"></div>
+
+    <!-- VIDEO ADDED HERE -->
+    <video id="special-video" controls>
+        <source src="vid.mp4" type="video/mp4">
+    </video>
+
+    <!-- Your picture -->
+    <img id="111.webp" src="your-picture.jpg" onclick="showLoveMessage()">
+
+    <!-- LOVE MESSAGE -->
+    <div id="love-message">
+        <p style="animation-delay:0.3s">My love, 335 days with you feels like a lifetime of warmth wrapped into one. You’ve held my heart gently, and you’ve made every ordinary day feel like something magical.</p>
+        <p style="animation-delay:0.8s">I never expected that someone like you would walk into my life and stay—stay through my moods, my flaws, my chaos, and my quiet moments. Yet here you are, loving me in ways I never thought I deserved.</p>
+        <p style="animation-delay:1.3s">You remind me of comfort, like the scent of home after a long day or the warmth of something familiar. With you, everything feels softer, lighter… safer.</p>
+        <p style="animation-delay:1.8s">Every moment with you has been a lesson—of patience, of trust, of how it feels to be understood without even speaking. You’ve touched parts of my heart that I didn’t know could feel alive again.</p>
+        <p style="animation-delay:2.3s">And today, just like every day before it, I choose you. My ayang. My love. My everything. Here’s to many more days, many more memories, and many more versions of us growing together.</p>
+    </div>
+
+    <button onclick="playSong()">Play Our Song 🎶</button>
+    <audio id="song" src="your-song.mp3"></audio>
+</div>
+
+<script>
+/* Confetti */
+function popConfetti() {
+    for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.innerHTML = "🎉";
+        confetti.style.position = "fixed";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.top = "-10px";
+        confetti.style.fontSize = (20 + Math.random() * 20) + "px";
+        confetti.style.animation = `fall ${2 + Math.random() * 3}s linear forwards`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}`;
+document.head.appendChild(style);
+
+/* Floating Hearts */
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💜";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (15 + Math.random() * 25) + "px";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+    }, 400);
+}
+
+/* Typewriter */
+const message = 
+"335 days with you… and every single one of them changed me.\n\n" +
+"You reminded me what it feels like to be loved, to be chosen, to be cared for.\n" +
+"You reminded me of scents, of home, of comfort… of everything.\n\n" +
+"And I’d choose these 335 days with you again and again.";
+
+let index = 0;
+
+function typeWriter() {
+    const box = document.getElementById("typewriter");
+    if (index < message.length) {
+        box.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+/* Show love message & enable scroll */
+function showLoveMessage() {
+    document.getElementById("love-message").classList.add("show");
+    document.body.classList.add("allow-scroll");
+}
+
+/* Reveal content after unlock */
+setTimeout(() => {
+    document.getElementById("content").classList.add("show");
+    popConfetti();
+    typeWriter();
+    createHearts();
+}, 2500);
+
+/* Play song */
+function playSong() {
+    document.getElementById("mine").play();
+}
+</script>
+
+</body>
+      </html>
+      
